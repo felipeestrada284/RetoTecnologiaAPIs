@@ -1,9 +1,10 @@
 package com.restapiexample.dummy.stepDefinitions;
 
+import com.restapiexample.dummy.questions.ResponseDelete;
 import com.restapiexample.dummy.questions.ResponsePost;
 import com.restapiexample.dummy.questions.ServerCodeResponse;
+import com.restapiexample.dummy.tasks.DeleteEmployeeTask;
 import com.restapiexample.dummy.tasks.GetEmployeeTask;
-import com.restapiexample.dummy.tasks.PostCreateEmployeeTask;
 import com.restapiexample.dummy.utils.Data;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
@@ -17,7 +18,7 @@ import java.util.Map;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class GetEmployeeStepDef {
+public class DeleteEmployeeStepDef {
     private EnvironmentVariables environmentVariables;
     Actor user = Actor.named("user");
 
@@ -30,13 +31,13 @@ public class GetEmployeeStepDef {
 
     }
 
-    @When("I consume the service and send employee id")
-    public void iConsumeTheServiceAndSendEmployeeId() {
-        user.attemptsTo(GetEmployeeTask.on());
+    @When("I consume the service delete and I send employee id")
+    public void iConsumeTheServiceDeleteAndISendEmployeeId() {
+        user.attemptsTo(DeleteEmployeeTask.on());
     }
 
-    @Then("I can validate the service response get")
-    public void iCanValidateTheServiceResponseGet() {
+    @Then("I can validate the service response delete")
+    public void iCanValidateTheServiceResponseDelete() {
         Map<String, String> data = Data.extractTo().get(0);
 
         user.should(
@@ -44,9 +45,13 @@ public class GetEmployeeStepDef {
                         "The response code was: ",
                         ServerCodeResponse.was(),
                         equalTo(data.get("status"))
+                ),
+                seeThat(
+                        "the response message was: ",
+                        res -> ResponseDelete.was().answeredBy(user).getMessage(),
+                        equalTo(data.get("messageDelete"))
                 )
         );
     }
-
 
 }

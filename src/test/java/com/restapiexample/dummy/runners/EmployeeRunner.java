@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/employee.feature",
         glue = "com.restapiexample.dummy.stepDefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        tags = "@Post"
+        //tags = "@Post or @Get or @Put or @Delete or @GetAll"
+        tags = "@Post or @Get"
 )
 public class EmployeeRunner {
 }

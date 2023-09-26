@@ -1,6 +1,7 @@
 package com.restapiexample.dummy.stepDefinitions;
 
 import com.restapiexample.dummy.questions.ResponsePost;
+import com.restapiexample.dummy.questions.ServerCodeResponse;
 import com.restapiexample.dummy.tasks.PostCreateEmployeeTask;
 import com.restapiexample.dummy.utils.Data;
 import io.cucumber.java.Before;
@@ -31,15 +32,23 @@ public class PostEmployeeStepDef {
     public void iConsumeTheServiceAndISendEmployeeInformation() {
         user.attemptsTo(PostCreateEmployeeTask.on());
     }
-    @Then("I can validate the service response message")
-    public void iCanValidateTheServiceResponseMessage() {
+
+    @Then("I can validate the service response post")
+    public void iCanValidateTheServiceResponsePost() {
         Map<String, String> data = Data.extractTo().get(0);
 
-        user.should(seeThat(
-                "the response message was: ",
-                res -> ResponsePost.was().answeredBy(user).getMessage(),
-                equalTo(data.get("message"))
-        ));
+        user.should(
+                seeThat(
+                        "The response code was: ",
+                        ServerCodeResponse.was(),
+                        equalTo(data.get("status"))
+                ),
+                seeThat(
+                        "the response message was: ",
+                        res -> ResponsePost.was().answeredBy(user).getMessage(),
+                        equalTo(data.get("messagePost"))
+                )
+        );
     }
 
 }
