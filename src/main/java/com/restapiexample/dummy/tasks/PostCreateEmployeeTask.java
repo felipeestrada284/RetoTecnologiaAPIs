@@ -5,6 +5,7 @@ import com.restapiexample.dummy.questions.BuildDataEmployee;
 import com.restapiexample.dummy.questions.ResponsePost;
 import com.restapiexample.dummy.utils.Data;
 import io.restassured.http.ContentType;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Post;
@@ -30,6 +31,9 @@ public class PostCreateEmployeeTask implements Task {
                                     //.log().all()
                     )
             );
+
+            status = SerenityRest.lastResponse().getStatusCode();
+            System.out.println("Status: " + status);
         }
 
         System.out.println(ResponsePost.was().answeredBy(actor).message);

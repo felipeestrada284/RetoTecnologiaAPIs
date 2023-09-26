@@ -16,7 +16,7 @@ public class ResponseEmployeeDelete {
     public String status;
 
     @JsonProperty("data")
-    public DataPost data;
+    public String data;
 
     @JsonProperty("message")
     public String message;

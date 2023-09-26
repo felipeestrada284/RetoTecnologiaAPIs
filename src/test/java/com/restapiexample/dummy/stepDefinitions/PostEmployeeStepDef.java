@@ -41,7 +41,7 @@ public class PostEmployeeStepDef {
                 seeThat(
                         "The response code was: ",
                         ServerCodeResponse.was(),
-                        equalTo(data.get("status"))
+                        equalTo(Integer.parseInt(data.get("status")))
                 ),
                 seeThat(
                         "the response message was: ",

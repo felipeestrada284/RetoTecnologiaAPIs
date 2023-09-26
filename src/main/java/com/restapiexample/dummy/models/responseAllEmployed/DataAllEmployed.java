@@ -15,15 +15,15 @@ public class DataAllEmployed {
     @JsonProperty("id")
     public Integer id;
 
-    @JsonProperty("employeeName")
-    public String employeeName;
+    @JsonProperty("employee_name")
+    public String employee_name;
 
-    @JsonProperty("employeeSalary")
-    public Integer employeeSalary;
+    @JsonProperty("employee_salary")
+    public Integer employee_salary;
 
-    @JsonProperty("employeeAge")
-    public Integer employeeAge;
+    @JsonProperty("employee_age")
+    public Integer employee_age;
 
-    @JsonProperty("profileImage")
-    public String profileImage;
+    @JsonProperty("profile_image")
+    public String profile_image;
 }
