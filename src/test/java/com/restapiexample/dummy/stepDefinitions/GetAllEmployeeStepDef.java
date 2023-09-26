@@ -49,7 +49,7 @@ public class GetAllEmployeeStepDef {
                 seeThat(
                         "the response message was: ",
                         res -> ResponseGetAll.was().answeredBy(user).getMessage(),
-                        equalTo(data.get("messageDelete"))
+                        equalTo(data.get("messageGetAll"))
                 )
         );
     }
